@@ -43,10 +43,10 @@ def job1(num,suc):
     for kk in range(0,len(listDtata)):
         result.append(-2)
     print("job1 Thread", num)
-    for i in range(0,len(listDtata)):
+    for i in range(0,len(listDtata)-1):
         threads.append(threading.Thread(target = caljob1, args = (listDtata[i],i,result,suc,)))
         test=threads[i].start()
-    for i in range(0,len(listDtata)):
+    for i in range(0,len(listDtata)-1):
         threads[i].join()
     time.sleep(1)
     for jj in range(0,len(result)):

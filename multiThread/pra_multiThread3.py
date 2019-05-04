@@ -89,7 +89,7 @@ def job2(num,suc):
     for i in range(0,len(listDtata)-1):
         threads.append(threading.Thread(target = caljob2, args = (listDtata[i],listDtata[i+1],i,result,suc,)))
         test=threads[i].start()
-    for i in range(0,len(listDtata)):
+    for i in range(0,len(listDtata)-1):
         threads[i].join()
     for jj in range(0,len(result)):
         print(result[jj])
