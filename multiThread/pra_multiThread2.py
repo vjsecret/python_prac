@@ -1,19 +1,6 @@
 import threading
 import time
 
-def setData(num):
-    global jobList
-    global listDtata1
-    if num==1:
-        porj(listDtata1,jobList)
-    elif (num==2):
-        porj(listDtata2,jobList)
-
-def setTest(num):
-    if num==1:
-        return job
-    elif (num==2):
-        return job1
 
 # 子執行緒的工作函數
 def job(num,suc):
@@ -95,6 +82,32 @@ def testCase(listDtata,jobList):
         threads.append(threading.Thread(target = porj, args = (listDtata[i],jobList,)))
         threads[i].start()
 
+def test0(listDtata,joblist):
+    global result
+    for hh in range(0,len(jobList)):
+        var=setTest(jobList[hh])
+        testCase(listDtata,var)
+    for jj in range(0,len(result)):
+        print(result[jj])
+    #savefile
+
+#有好幾筆list的資料(listDtata1,listDtata2,...)，每筆資料可執行不同的計算任務(job(),job1(),...=>根據jobList填的element的值決定要跑哪個job())
+#目標:希望執行multi的計算任務，每個執行計算任務裡也是能針對資料跑multi
+
+def setTest(num):
+    if num==1:
+        return job
+    elif (num==2):
+        return job1
+
+def setData(num):
+    global jobList
+    global listDtata1
+    if num==1:
+        porj(listDtata1,jobList)
+    elif (num==2):
+        porj(listDtata2,jobList)
+
 jobList=[1,2]
 datanum=[1,2]
 listDtata1=[1,2,3,4,5,6,7]
@@ -104,10 +117,11 @@ listDtata2=[3,4,5,6,7,8]
 listDtata=[1,2,3,4,5,6,7]
 
 #print(len(listDtata))
-print("start:")
-#testCase(listDtata,jobList)
-#porj(listDtata,jobList)
-for ii in range(0,len(datanum)):
-    setData(datanum[ii])
-
-print("Done.")
+if __name__ == "__main__":
+    print("start:")
+    #test0(listDtata,jobList) #=>先實作一筆資料能跑多種任務
+    #porj(listDtata,jobList)
+    for ii in range(0,len(datanum)):
+        setData(datanum[ii])
+    
+    print("Done.")
