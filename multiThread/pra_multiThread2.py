@@ -123,5 +123,6 @@ if __name__ == "__main__":
     #porj(listDtata,jobList)
     for ii in range(0,len(datanum)):
         setData(datanum[ii])
+        print("******************************finish job ", ii)
     
     print("Done.")
